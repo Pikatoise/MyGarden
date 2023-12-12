@@ -1,6 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.MyGarden" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@color/blue_main</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
     <style name="Theme.MyGarden" parent="Base.Theme.MyGarden" />
+
+    <style name="Theme.SplashScreen" parent="Base.Theme.MyGarden"/>
+
+    <style name="Theme.BlueNavBar" parent="Theme.SplashScreen">
+        <item name="android:navigationBarColor">@color/blue_main</item>
+    </style>
 </resources>
