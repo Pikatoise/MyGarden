@@ -21,7 +21,8 @@
             android:layout_height="40dp"
             tools:background="@drawable/shape_stroke_black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,14 +38,56 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home Fragment"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tv_page_compability"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/black"
+        app:cardCornerRadius="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/cl_header">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/vegetables"
+            android:scaleType="centerCrop"
+            android:alpha="0.5"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Совместимость\nовощей"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="28sp"
+            android:shadowRadius="4"
+            android:shadowColor="@color/white"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <TextView
+        android:id="@+id/tv_page_lifehacks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Лайфхаки для урожая"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_page_compability"/>
+
+    <TextView
+        android:id="@+id/tv_page_intresting_plant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Интересные растения для огорода"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_page_lifehacks"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
