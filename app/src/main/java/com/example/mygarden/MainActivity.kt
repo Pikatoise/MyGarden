@@ -3,13 +3,13 @@ package com.example.mygarden
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.mygarden.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 	private lateinit var binding: ActivityMainBinding
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
@@ -37,6 +37,15 @@ class MainActivity : AppCompatActivity() {
 						R.id.item_home -> {
 							replaceFragment(HomeFragment())
 						}
+
+						R.id.item_beds -> {
+							replaceFragment(BedsFragment())
+						}
+
+						R.id.item_plants -> {
+
+						}
+
 						R.id.item_about -> {
 							replaceFragment(AboutFragment())
 						}

@@ -4,4 +4,6 @@
     <string name="release_date">Релиз: 22.12.2023</string>
     <string name="update_date">Обновление: 22.12.2023</string>
     <string name="email">wierwolf@inbox.ru</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

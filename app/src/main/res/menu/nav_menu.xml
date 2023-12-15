@@ -11,6 +11,16 @@
             android:icon="@drawable/ic_home" />
 
         <item
+            android:id="@+id/item_beds"
+            android:title="Грядки"
+            android:icon="@drawable/ic_table" />
+
+        <item
+            android:id="@+id/item_plants"
+            android:title="Растения"
+            android:icon="@drawable/ic_plant" />
+
+        <item
             android:id="@+id/item_about"
             android:title="О программе"
             android:icon="@drawable/ic_info_circle"/>
