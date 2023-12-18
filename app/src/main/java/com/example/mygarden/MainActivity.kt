@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 						}
 
 						R.id.item_plants -> {
-
+							replaceFragment(PlantsFragment())
 						}
 
 						R.id.item_about -> {

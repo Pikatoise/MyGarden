@@ -44,6 +44,25 @@ class BedRepository(context: Context) {
 		return bed
 	}
 
+	public fun getBedById(id: Int): Bed {
+		var bed: Bed = Bed(id,"")
+
+		var cursor = mDb.rawQuery(
+			"SELECT * FROM [Beds] WHERE Id = $id",
+			null)
+
+		if (cursor != null && cursor.count > 0){
+			cursor.moveToFirst()
+
+			bed.id = cursor.getInt(0)
+			bed.name = cursor.getString(1)
+		}
+
+		cursor.close()
+
+		return bed
+	}
+
 	public fun getAllBeds(): ArrayList<Bed> {
 		var beds: ArrayList<Bed> = arrayListOf()
 

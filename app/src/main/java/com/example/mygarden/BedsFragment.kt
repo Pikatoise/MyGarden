@@ -1,5 +1,6 @@
 package com.example.mygarden
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,8 +15,8 @@ import com.example.mygarden.databinding.FragmentBedsBinding
 
 class BedsFragment : Fragment() {
 	private lateinit var binding: FragmentBedsBinding
-	private lateinit var bdBeds: BedRepository
-	private lateinit var bdPlants: PlantRepository
+	private lateinit var dbBeds: BedRepository
+	private lateinit var dbPlants: PlantRepository
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -23,10 +24,12 @@ class BedsFragment : Fragment() {
 	): View? {
 		binding = FragmentBedsBinding.inflate(inflater,container,false)
 
-		bdBeds = BedRepository(this.requireContext())
-		bdPlants = PlantRepository(this.requireContext())
+		dbBeds = BedRepository(this.requireContext())
+		dbPlants = PlantRepository(this.requireContext())
 
-		loadBeds()
+		binding.rlAddBed.setOnClickListener {
+			startActivity(Intent(this.requireContext(),AddBedActivity::class.java))
+		}
 
 		return binding.root
 	}
@@ -35,18 +38,24 @@ class BedsFragment : Fragment() {
 		binding.rvBeds.adapter = null
 
 		var dataset: ArrayList<BedsRecyclerData> = arrayListOf()
-		var beds = bdBeds.getAllBeds()
-		var plants = bdPlants.getAllPlant()
+		var beds = dbBeds.getAllBeds()
+		var plants = dbPlants.getAllPlant()
 
 		beds.forEach {
-
 			dataset.add(BedsRecyclerData(it,plants.count { p -> p.bedId == it.id }))
 		}
 
-			Toast.makeText(this.requireContext(),"${dataset.size}",Toast.LENGTH_SHORT).show()
-		val bedsAdapter = BedsRecyclerAdapter(dataset)
+		val bedsAdapter = BedsRecyclerAdapter(dataset) {
+			// Открытие активити грядки
+		}
 
 		binding.rvBeds.layoutManager = GridLayoutManager(this.requireContext(),2, RecyclerView.VERTICAL ,false)
 		binding.rvBeds.adapter = bedsAdapter
+	}
+
+	override fun onResume() {
+		super.onResume()
+
+		loadBeds()
 	}
 }

@@ -48,6 +48,29 @@ class PlantRepository(context: Context) {
 		return plant
 	}
 
+	public fun getPlantById(id: Int): Plant {
+		var plant: Plant = Plant(id,"",-1,"",-1,-1)
+
+		var cursor = mDb.rawQuery(
+			"SELECT * FROM [Plants] WHERE Id = $id",
+			null)
+
+		if (cursor != null && cursor.count > 0){
+			cursor.moveToFirst()
+
+			plant.id = cursor.getInt(0)
+			plant.name = cursor.getString(1)
+			plant.age = cursor.getInt(2)
+			plant.sort = cursor.getString(3)
+			plant.planted = cursor.getInt(4)
+			plant.bedId = cursor.getInt(5)
+		}
+
+		cursor.close()
+
+		return plant
+	}
+
 	public fun getAllPlant(): ArrayList<Plant> {
 		var plants: ArrayList<Plant> = arrayListOf()
 
@@ -113,7 +136,7 @@ class PlantRepository(context: Context) {
 			"INSERT INTO [Plants](Name,Age,Sort,Planted,BedId) VALUES ('${plant.name}',${plant.age},'${plant.sort}',${plant.planted},${plant.bedId})")
 	}
 
-	public fun updatePlantBed(plantId: Int, bedId: Int){
-		mDb.execSQL("UPDATE [Plants] SET BedId = $bedId WHERE Id = $plantId")
+	public fun updatePlant(plant: Plant){
+		mDb.execSQL("UPDATE [Plants] SET Name = '${plant.name}', Age = ${plant.age}, Sort = '${plant.sort}', Planted = ${plant.planted}, BedId = ${plant.bedId} WHERE Id = ${plant.id}")
 	}
 }
