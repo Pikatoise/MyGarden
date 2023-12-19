@@ -90,9 +90,24 @@ class PlantActivity : AppCompatActivity() {
 	}
 
 	private fun save(){
+		if (plantBedId == -1){
+			Toast.makeText(this,"Выберите грядку!",Toast.LENGTH_SHORT).show()
+			return
+		}
+
 		val name = binding.etAddPlantName.text.toString()
+		if (name.isNullOrEmpty()){
+			Toast.makeText(this,"Введите название!",Toast.LENGTH_SHORT).show()
+			return
+		}
+
 		val age = binding.etAddPlantAge.text.toString().toInt()
+
 		val sort = binding.etAddPlantSort.text.toString()
+		if (sort.isNullOrEmpty()){
+			Toast.makeText(this,"Введите сорт!",Toast.LENGTH_SHORT).show()
+			return
+		}
 
 		val day = binding.dpAddPlantPlanted.dayOfMonth
 		val month = binding.dpAddPlantPlanted.month + 1

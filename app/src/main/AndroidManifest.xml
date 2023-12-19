@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".AddHarvestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HarvestActivity"
+            android:exported="false" />
+        <activity
             android:name=".PlantActivity"
             android:exported="false" />
         <activity

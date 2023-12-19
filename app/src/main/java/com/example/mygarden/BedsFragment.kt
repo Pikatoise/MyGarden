@@ -28,7 +28,9 @@ class BedsFragment : Fragment() {
 		dbPlants = PlantRepository(this.requireContext())
 
 		binding.rlAddBed.setOnClickListener {
-			startActivity(Intent(this.requireContext(),AddBedActivity::class.java))
+			val intent = Intent(this.requireContext(),AddBedActivity::class.java)
+
+			startActivity(intent)
 		}
 
 		return binding.root
@@ -46,7 +48,11 @@ class BedsFragment : Fragment() {
 		}
 
 		val bedsAdapter = BedsRecyclerAdapter(dataset) {
-			// Открытие активити грядки
+			val intent = Intent(this.requireContext(),BedActivity::class.java)
+
+			intent.putExtra("bedId",it)
+
+			startActivity(intent)
 		}
 
 		binding.rvBeds.layoutManager = GridLayoutManager(this.requireContext(),2, RecyclerView.VERTICAL ,false)

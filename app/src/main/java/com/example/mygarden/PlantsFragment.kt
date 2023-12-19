@@ -10,8 +10,8 @@ import com.example.mygarden.databinding.FragmentPlantsBinding
 
 class PlantsFragment : Fragment() {
 	private lateinit var binding: FragmentPlantsBinding
-	private lateinit var bdPlants: PlantRepository
-	private lateinit var bdBeds: BedRepository
+	private lateinit var dbPlants: PlantRepository
+	private lateinit var dbBeds: BedRepository
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -19,8 +19,8 @@ class PlantsFragment : Fragment() {
 	): View? {
 		binding = FragmentPlantsBinding.inflate(inflater,container,false)
 
-		bdPlants = PlantRepository(this.requireContext())
-		bdBeds = BedRepository(this.requireContext())
+		dbPlants = PlantRepository(this.requireContext())
+		dbBeds = BedRepository(this.requireContext())
 
 		binding.rlAddPlant.setOnClickListener {
 			val intent = Intent(this.requireContext(),PlantActivity::class.java)
@@ -37,8 +37,8 @@ class PlantsFragment : Fragment() {
 		binding.rvPlants.adapter = null
 
 		var dataset: ArrayList<PlantsRecyclerData> = arrayListOf()
-		var plants = bdPlants.getAllPlant()
-		var beds = bdBeds.getAllBeds()
+		var plants = dbPlants.getAllPlant()
+		var beds = dbBeds.getAllBeds()
 
 		plants.forEach {
 			dataset.add(PlantsRecyclerData(
@@ -50,7 +50,7 @@ class PlantsFragment : Fragment() {
 		val plantsAdapter = PlantsRecyclerAdapter(dataset,
 			{
 				val dialogRemove = DialogRemoveItem( "Удалить растение?") {
-					bdPlants.removePlant(it)
+					dbPlants.removePlant(it)
 
 					loadPlants()
 				}
@@ -58,7 +58,12 @@ class PlantsFragment : Fragment() {
 				dialogRemove.show(manager,"removeDialog")
 			},
 			{
+				val intent = Intent(this.requireContext(),HarvestActivity::class.java)
 
+				intent.putExtra("plantId",it)
+				intent.putExtra("bedId",-1)
+
+				startActivity(intent)
 			},
 			{
 				val intent = Intent(this.requireContext(),PlantActivity::class.java)
